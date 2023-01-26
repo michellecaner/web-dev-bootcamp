@@ -1,3 +1,5 @@
+"""Python refresher course - Lists, Tuples & Sets Section"""
+
 # this is a list - you can add & subtract elements - it is ordered and mutable
 l = ["Michelle", "PK", "Milo"]
 

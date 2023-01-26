@@ -1,3 +1,5 @@
+"""Python refresher course - 1st Python App that calculates a users age in months"""
+
 user_age = input("Please enter your age: ")
 age_number = int(user_age)
 age_in_months = age_number * 12

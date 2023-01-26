@@ -1,3 +1,5 @@
+"""Python refresher course - User Input Section"""
+
 name = input("Enter your name: ")
 print(name)
 
