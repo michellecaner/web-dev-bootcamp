@@ -21,3 +21,14 @@ if user_input == "y":
         print("You're only off by 1!")
     else:
         print("Sorry, kiddo. No dice!")
+        
+# exercise with more math bullshit
+def divisible(num1, num2):
+    return num1 % num2 == 0
+
+def user_even():
+    user_num = int(input("Give us a number: "))
+    if divisible(user_num, 2): # this tripped me up, need to enter the args
+        print("It's even")
+    else:
+        print("It's odd")
