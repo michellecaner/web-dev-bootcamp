@@ -45,11 +45,13 @@ for person in people:
 # Name: Dan, Age: 43, Profession: Artist
 
 
+
 # what if you DON'T want to access an element??
 person = ("Michelle", 42, "Engineer")
 name, _, profession = person  # the underscore by itself will be assigned to the element you want to skip
 
 print(name, profession) # Michelle Engineer
+
 
 
 # separate a list into two from the 1st element and the rest of the elements
