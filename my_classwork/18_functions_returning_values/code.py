@@ -17,5 +17,3 @@ def addition(x, y):
 addition(5, 8)
 answer = addition(5, 8)
 print(answer)
-
-
