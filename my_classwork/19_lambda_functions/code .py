@@ -1,7 +1,7 @@
 """Python refresher course - Lambda Functions Section"""
 
 # this is an unnamed lambda function
-lambda x, y: x + y()
+# lambda x, y: x + y()
 
 
 
