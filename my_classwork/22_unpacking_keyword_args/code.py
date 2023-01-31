@@ -15,5 +15,3 @@ def bio(name, age):
 details = {"name": "Al", "age": 85}
 
 bio(**details) # ** unpacks dictionary
-
-
