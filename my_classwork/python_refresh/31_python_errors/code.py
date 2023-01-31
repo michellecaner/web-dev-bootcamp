@@ -1,4 +1,4 @@
-"""Python refresher course - Type Hinting in Python Errors Section"""
+"""Python refresher course - Python Errors Section"""
 
 def divide(dividend, divisor):
     if divisor == 0:
