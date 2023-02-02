@@ -1,0 +1,15 @@
+/* original color */
+.container {
+  color: orangered;
+}
+
+/* this now overrides */
+p {
+  color: blueviolet
+}
+
+/* and the anchor tag can now inherit the p color */
+a {
+  color: inherit
+}
+
