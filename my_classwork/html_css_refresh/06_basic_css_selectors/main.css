@@ -1,0 +1,17 @@
+.red {
+  color: red;
+}
+
+#orange {
+  color: orange;
+}
+
+/* id will override class */
+#purple {
+  color: purple
+}
+
+/* below is the universal selector */
+* {
+  color: aqua
+}
