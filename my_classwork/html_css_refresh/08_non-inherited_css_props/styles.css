@@ -1,0 +1,15 @@
+.inner {
+  width: 100px;
+  height: 50px;
+  background-color: red;
+}
+
+.outer {
+  background-color: #bbbbbb;
+}
+
+/* Not inheritable unless forced (but would be an issue later on)
+margins
+padding
+borders 
+background color */
