@@ -7,8 +7,8 @@ app = Flask(__name__)
 @app.route("/")
 def hello_world():
     return "Hello, World!"
-  
-  
+
+
 @app.route("/fancy")
 def hello_world_fancy():
     return """
@@ -20,4 +20,4 @@ def hello_world_fancy():
     
     </body>
     </html>
-  """
+"""
