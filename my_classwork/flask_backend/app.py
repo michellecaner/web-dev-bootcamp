@@ -4,6 +4,14 @@ from flask import Flask, render_template
 app = Flask(__name__)
 
 
+class GalileanMoons:
+    def __init__(self, first, second, third, fourth):
+        self.first = first
+        self.second = second
+        self.third = third
+        self.fourth = fourth
+
+
 @app.route("/")
 def hello_world():
     return render_template(
@@ -50,3 +58,31 @@ def render_expressions():
         "expressions.html", **kwargs)
 
     # color="brown" (now color=color) is a key/value pair - different from the variables even though they look similar!
+    
+@app.route("/data-structures/")
+def render_data_structures():
+
+    # list operations / accessed by index: movies[0]
+    movies = [
+        "Leon the Professional",
+        "The Usual Suspects",
+        "A Beautiful Mind"
+    ]
+    
+    # dictionary operations / accessed by keys: car["brand"]
+    car = {
+        "brand": "Tesla",
+        "model": "Roadster",
+        "year": "2020"
+    }
+
+    # custom data structure operations
+    moons = GalileanMoons("Io", "Europa", "Ganymede", "Callisto")
+
+    kwargs = {
+        "movies": movies,
+        "car": car,
+        "moons": moons,
+    }
+    
+    return render_template("data_structures.html", **kwargs)
