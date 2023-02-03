@@ -25,9 +25,9 @@ def hello_world():
 # as soon as it has Jinja code, the html template is no longer a static document
 
 # adding the / at the end of the route below as a safety catch - flask doesn't care either way
-@app.route("/expressions/") 
+@app.route("/expressions/")
 def render_expressions():
-    
+
     # interpolation variables
     color = "brown"
     animal_one = "fox"
@@ -58,7 +58,7 @@ def render_expressions():
         "expressions.html", **kwargs)
 
     # color="brown" (now color=color) is a key/value pair - different from the variables even though they look similar!
-    
+
 @app.route("/data-structures/")
 def render_data_structures():
 
@@ -68,7 +68,7 @@ def render_data_structures():
         "The Usual Suspects",
         "A Beautiful Mind"
     ]
-    
+
     # dictionary operations / accessed by keys: car["brand"]
     car = {
         "brand": "Tesla",
@@ -76,7 +76,7 @@ def render_data_structures():
         "year": "2020"
     }
 
-    # custom data structure operations
+    # custom data structure operations / accessed by dot notation: moons.first
     moons = GalileanMoons("Io", "Europa", "Ganymede", "Callisto")
 
     kwargs = {
@@ -84,5 +84,11 @@ def render_data_structures():
         "car": car,
         "moons": moons,
     }
-    
+
     return render_template("data_structures.html", **kwargs)
+
+@app.route("/conditionals-basics/")
+def render_conditionals():
+    company = "Microsoft"
+
+    return render_template("conditionals_basics.html", company=company)

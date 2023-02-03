@@ -1,0 +1,32 @@
+<!-- templates/conditionals_basics.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Conditional Statements</title>
+</head>
+<body>
+  <h1>Conditionals in Jinja2</h1>
+  <h2>Basic Comparisons</h2>
+
+  {% if company == "Apple" %}
+  <h3>Available Apple Products</h3>
+  <ul>
+      <li>iPhone</li>
+      <li>iPad</li>
+      <li>iMac</li>
+  </ul>
+
+  {% elif company == "Microsoft" %}
+  <h3>Available Microsoft Products</h3>
+  <ul>
+      <li>Windows Phone</li>
+      <li>Surface Pro</li>
+      <li>Surface Book</li>
+  </ul>
+  {% endif %}
+</body> 
+</html>
