@@ -87,8 +87,37 @@ def render_data_structures():
 
     return render_template("data_structures.html", **kwargs)
 
+
 @app.route("/conditionals-basics/")
 def render_conditionals():
     company = "Microsoft"
 
     return render_template("conditionals_basics.html", company=company)
+
+
+# using our for loop to display an ul of planets
+@app.route("/for-loop/")
+def render_for_loops():
+    planets = [
+        "Mercury",
+        "Venus",
+        "Earth",
+        "Mars",
+        "Jupyter",
+        "Saturn",
+        "Uranus",
+        "Neptune"
+    ]
+    return render_template("for_loops.html", planets=planets)
+
+
+# using for loops WITH conditionals on a dictionary
+@app.route("/for-loop/conditionals/")
+def render_for_loops_conditionals():
+    user_os = {
+        "Bob Miller": "Windows",
+        "Judy Lee": "MacOS",
+        "Zach Ng": "Linux",
+        "Regina George": "Windows"
+    }
+    return render_template("loops_and_conditionals.html", user_os=user_os)
