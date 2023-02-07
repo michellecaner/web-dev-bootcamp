@@ -23,7 +23,8 @@
     <section>
       <h1>Add New Entry</h1>
       <!-- Following BEM naming conventions -->
-      <form class="form" action="/entry" method="POST">
+      <!--  The form originally had  action="/entry" too, but it was changed to  action="/" because it's already on the homepage. Therefore, it can be deleted entirely considering it's also sending data back to the homepage. -->
+      <form class="form" method="POST">
         <p class="form__input">
           <!-- <label for="entry" class="form__label">Entry Content: </label> -->
           <textarea name="content" id="entry" class="form__textarea" aria-label="Entry contents"></textarea>
