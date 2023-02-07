@@ -6,12 +6,13 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Microblog</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
-  <header>
+  <header class="navbar">
     <div class="navbar__brand">
-      <img src="microblog-logo.svg" alt="The Microblog logo" />Microblog
+      <img class="navbar__logo" src="microblog-logo.svg" alt="The Microblog logo" />Microblog
     </div>
     <ul class="navbar__navigation">
       <li class="navbar__nav-item"><a href="#" class="navbar__link">Recent</a></li>
@@ -23,10 +24,10 @@
       <h1>Add New Entry</h1>
       <!-- Following BEM naming conventions -->
       <form class="form" action="/entry" method="POST">
-      <p class="form__input">
-        <label for="entry" class="form__label">Entry Content: </label>
-        <textarea name="content" id="entry" class="form__textarea"></textarea>
-      </p>
+        <p class="form__input">
+          <label for="entry" class="form__label">Entry Content: </label>
+          <textarea name="content" id="entry" class="form__textarea"></textarea>
+        </p>
         <button type="submit" class="form__submit">Add Entry</button>
       </form>
     </section>
@@ -47,8 +48,8 @@
   <footer class="footer">
     <div class="footer__content">
       <section class="left"></section>
-        <a class="footer__item">Made by Michelle Caner</a>
-        <a class="footer__item">Check out my other projects!</a>
+      <a class="footer__item">Made by Michelle Caner</a>
+      <a class="footer__item">Check out my other projects!</a>
       <section class="right"></section>
       <div class="footer__column">
         <a class="footer__item">Recent</a>
