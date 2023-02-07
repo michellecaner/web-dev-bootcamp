@@ -38,10 +38,10 @@
       {% for entry in entries %}
       <article class="entry">
         <div>
-          <!-- | truncate(30, true ) is a jinja filter that previews the first 30 char -->
+          <!-- | truncate(30, true ) is a jinja filter that shows 1st 30 char w/ ... at end -->
           <h2 class="entry__title">{{ entry[0] | truncate(30, true ) }}</h2>
-          <!-- the entry variable is a tuple where the 2nd element is the date -->
-          <time class="entry__date" datetime="06-02-2023">• {{ entry[1] }}</time>
+          <!-- the entry variable is a tuple where the 3rd (reformatted) element is the date -->
+          <time class="entry__date" datetime="{{ entry[1] }}">• {{ entry[2] }}</time>
         </div>
         <p class="entry__content">
           <!-- the entry variable is a tuple where the first element is the content -->

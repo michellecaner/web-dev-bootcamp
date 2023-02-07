@@ -17,8 +17,17 @@ def home():
         entry_content = request.form.get("content")
         formatted_date = datetime.datetime.today().strftime("%Y-%m-%d")
         entries.append((entry_content, formatted_date))
-    return render_template("home.html", entries=entries)
-  
+
+    entries_with_date = [
+        (
+            entry[0],
+            entry[1],
+            datetime.datetime.strptime(entry[1], "%Y-%m-%d").strftime("%b %d")
+        )
+        for entry in entries
+    ]
+    return render_template("home.html", entries=entries_with_date)
+
   # print(entry_content, formatted_date) <-- for testing
 
   # if the request method is post, we can grab the entry content data
@@ -26,14 +35,19 @@ def home():
   # then we can access that data with request.form.get()
   # "content" is the NAME of that field - set in HTML block
   # in flask, request.form is something that looks like a dictionary
-  
-  # datetime.datetime.today() accesses the datetime class of the datetime module  and gives us a datetime object that has today's date
+
+
+  # datetime.datetime.today() accesses the datetime class of the datetime module and gives us a datetime object that has today's date
   # .strftime("%Y-%m-%d") formats the datetime object into a string with the year, month & day as 2 digits each
+  # when reformatting, we tell Python which date we're talking about & then changes it into month & date
+  # the for loop applies that logic to every entry in the entries list
+  
   
   # next, the data has to be stored somewhere - for now an empty list
   # then the data needs to be sent back to the template to be displayed in the browser
   
-  # using the entries in our template --> entries=entries
+  
+  # using the reformated entries in our template --> entries=entries_with_date
   # entries=entries creates an entries variable in the template that will contain our list of tuples
   # then in the template, you make use of that {{ variable }}
   
