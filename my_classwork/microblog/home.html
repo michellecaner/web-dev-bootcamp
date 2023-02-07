@@ -21,10 +21,13 @@
   <main>
     <section>
       <h1>Add New Entry</h1>
-      <form action="/entry" method="GET">
-        <label for="sample-field">Sample: </label>
-        <input type="text" name="sample" id="sample-field" />
-        <button type="submit">Submit</button>
+      <!-- Following BEM naming conventions -->
+      <form class="form" action="/entry" method="POST">
+      <p class="form__input">
+        <label for="entry" class="form__label">Entry Content: </label>
+        <textarea name="content" id="entry" class="form__textarea"></textarea>
+      </p>
+        <button type="submit" class="form__submit">Add Entry</button>
       </form>
     </section>
     <section>
