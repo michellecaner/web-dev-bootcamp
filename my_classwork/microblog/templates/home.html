@@ -34,17 +34,22 @@
     </section>
     <section>
       <h1>Recent Posts</h1>
+      <!-- the for loop creates one of these articles for every entry -->
+      {% for entry in entries %}
       <article class="entry">
         <div>
-          <h2 class="entry__title">Getting motivated!</h2>
-          <time class="entry__date" datetime="06-02-2023">• Feb 6</time>
+          <!-- | truncate(30, true ) is a jinja filter that previews the first 30 char -->
+          <h2 class="entry__title">{{ entry[0] | truncate(30, true ) }}</h2>
+          <!-- the entry variable is a tuple where the 2nd element is the date -->
+          <time class="entry__date" datetime="06-02-2023">• {{ entry[1] }}</time>
         </div>
         <p class="entry__content">
-          Trying to get back on the programming bandwagon after some time off this weekend.
+          <!-- the entry variable is a tuple where the first element is the content -->
+          {{ entry[0] }}
         </p>
       </article>
+      {% endfor %}
     </section>
-
   </main>
   <footer class="footer">
     <div class="footer__content">
