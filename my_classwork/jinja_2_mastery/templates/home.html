@@ -1,3 +1,5 @@
+{% from "macros.jinja2" import todo_list %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,12 +8,21 @@
   <title>Todos</title>
 </head>
 <body>
+
   {% set num_todos = todos | length %}
 
   {% if num_todos > 0 %}
     <p>You have {{ num_todos }} left to do today.</p>
+    {{ todo_list(todos)}}
   {% else %}
     <p>You have nothing to do today. Relax!</p>
   {% endif %}
 </body>
 </html>
+
+<!-- {{ todo_li(text, completed) }} calling the macro w/ args -->
+
+{% comment %} You have 2 left to do today.
+
+[ ] - Get milk
+[x] - Learn code {% endcomment %}
