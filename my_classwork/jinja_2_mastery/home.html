@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Todos</title>
+</head>
+<body>
+  {% set num_todos = len(todos) %}
+
+  {% if num_todos > 0 %}
+    <p>You have {{ num_todos }} left to do today.</p>
+  {% else %}
+    <p>You have nothing to do today. Relax!</p>
+  {% endif %}
+</body>
+</html>
