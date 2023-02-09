@@ -6,7 +6,7 @@
   <title>Todos</title>
 </head>
 <body>
-  {% set num_todos = len(todos) %}
+  {% set num_todos = todos | length %}
 
   {% if num_todos > 0 %}
     <p>You have {{ num_todos }} left to do today.</p>
