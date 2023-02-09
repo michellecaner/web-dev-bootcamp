@@ -1,22 +1,30 @@
 import datetime
 from flask import Flask, render_template, request
+from pymongo import MongoClient
+import certifi
+
 
 app = Flask(__name__)
+client = MongoClient("mongodb+srv://BBluth:Lucille143!@microblog-app.fy7jwwt.mongodb.net/test", tlsCAFile=certifi.where())
+app.db = client.microblog
+entries = []
 
 # a temporary place to save our entries before we move over to a database
 # since our data is simple, we are going to save the data in tuples
 # for every form we receive, we're going to append a new tuple to the entries list that contains the content & the date
-entries = []
+
 
 # setting the end points/routes & their methods
 # for the microblog, we can post new entries and get past entries on the homepage
 # the request variable is a value that has something inside it whenever we're in a function that is currently responding to a request made by the browser & it's associated endpoint
 @app.route("/", methods=["GET", "POST"])
 def home():
+
     if request.method == "POST":
         entry_content = request.form.get("content")
         formatted_date = datetime.datetime.today().strftime("%Y-%m-%d")
         entries.append((entry_content, formatted_date))
+        app.db.entries.insert_one({"content": entry_content, "date": formatted_date})
 
     entries_with_date = [
         (
@@ -29,6 +37,7 @@ def home():
     return render_template("home.html", entries=entries_with_date)
 
   # print(entry_content, formatted_date) <-- for testing
+  # print([e for e in app.db.entries.find({})]) <-- for testing
 
   # if the request method is post, we can grab the entry content data
   # when the form submits, the data is added to a payload & sent with the request
