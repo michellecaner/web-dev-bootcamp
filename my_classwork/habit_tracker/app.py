@@ -1,9 +1,11 @@
 import datetime
-from flask import Flask, render_template, request
+from collections import defaultdict
+from flask import Flask, render_template, request, url_for, redirect
 
 
 app = Flask(__name__)
 habits = ["Test habit"]
+completions = defaultdict(list) # creating default dict
 
 
 # func using list comp to get starting/current date & to get dates 3 days before & after
@@ -27,8 +29,9 @@ def index():
     return render_template(
         "index.html", 
         habits = habits,
-        title="Habit Tracker - Home",
-        selected_date=selected_date
+        selected_date=selected_date,
+        completions=completions[selected_date],
+        title="Habit Tracker - Home"
         )
 
 
@@ -42,3 +45,16 @@ def add_habit():
         title="Habit Tracker - Add Habit", 
         selected_date=datetime.date.today()
     )
+# new flask feature
+# instead of @app.route("/complete", methods=["POST"])
+# need to make a place for that completed habit data to go
+# @app.post("/complete")
+
+@app.route("/complete", methods=["POST"])
+def complete():
+    date_string = request.form.get("date") # <--names of the fields
+    habit = request.form.get("habitName") # <--names of the fields
+    date = datetime.date.fromisoformat(date_string)
+    completions[date].append(habit)
+
+    return redirect(url_for("index", date=date_string))
