@@ -9,7 +9,7 @@ body {
   font-family: "Inter", sans-serif;
 }
 
-.header, 
+.header,
 .main {
   max-width: 40rem;
   margin: 0 auto;
@@ -65,4 +65,64 @@ body {
   border: none;
   padding: 0.5rem 2.5rem;
   align-self: flex-end;
+}
+
+.dates {
+  display: flex;
+  justify-content: space-around;
+  color: black;
+  font-size: 1.1rem;
+  margin-bottom: 2.5rem;
+}
+
+.dates__link {
+  color: inherit;
+  text-decoration: none;
+  outline: none;
+  padding: 0.25rem 0.75rem;
+  border-radius: 6px;
+}
+
+.dates__link--current {
+  background: #f9dba0;
+}
+
+.dates__link:not(.dates__link--current):hover {
+  background: #e5e5e5;
+}
+
+.date {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* to show one date before & after on very small screens */
+
+/* first-of-type means the very 1st .dates__link in the container
+last-of-type means the very last .dates__link in the container */
+
+/* nth-of-type grabs the 2nd fron first
+nth-last-of-type() grabs the 2nd from last */
+.dates__link:first-of-type,
+.dates__link:last-of-type,
+.dates__link:nth-of-type(2),
+.dates__link:nth-last-of-type(2) {
+  display: none;
+}
+
+/* to show two dates before & after on medium screens */
+@media screen and (min-width: 25rem) {
+  .dates__link:nth-of-type(2),
+  .dates__link:nth-last-of-type(2) {
+    display: block;
+  }
+}
+
+/* to show three dates before & after on larger screens */
+@media screen and (min-width: 35rem) {
+  .dates__link:first-of-type,
+  .dates__link:last-of-type {
+    display: block;
+  }
 }
