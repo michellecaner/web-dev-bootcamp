@@ -53,17 +53,17 @@ def add_habit():
     today = today_at_midnight()
 
     if request.form:
-      current_app.db.habits.insert_one(
-          {"_id": uuid.uuid4().hex, "added": today, "name": request.form.get("habit")}
-      )
+        current_app.db.habits.insert_one(
+            {"_id": uuid.uuid4().hex, "added": today, "name": request.form.get("habit")}
+        )
 
     return render_template(
         "add_habit.html", 
         title="Habit Tracker - Add Habit",
         selected_date=today
     )
-    
-    
+
+
 # new flask feature
 # instead of @app.route("/complete", methods=["POST"])
 # need to make a place for that completed habit data to go
@@ -75,4 +75,4 @@ def complete():
     date = datetime.datetime.fromisoformat(date_string)
     current_app.db.completions.insert_one({"date": date, "habit": habit})
 
-    return redirect(url_for(".index", date=date_string))
+    return redirect(url_for("habits.index", date=date_string))
