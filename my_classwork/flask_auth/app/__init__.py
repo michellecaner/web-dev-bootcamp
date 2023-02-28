@@ -9,6 +9,8 @@ from flask import (
     redirect
 )
 
+from passlib.hash import pbkdf2_sha256
+
 app = Flask(__name__)
 # Secret key generated with secrets.token_urlsafe()
 app.secret_key = "lkaQT-kAb6aIvqWETVcCQ28F-j-rP_PSEaCDdTynkXA"
@@ -36,7 +38,7 @@ def login():
         email = request.form.get("email")
         password = request.form.get("password")
 
-        if users.get(email) == password:
+        if pbkdf2_sha256.verify(password, users.get(email)):
             session["email"] = email
             return redirect(url_for("protected"))
         flash("Incorrect email or password.")
@@ -49,7 +51,8 @@ def signup():
         email = request.form.get("email")
         password = request.form.get("password")
 
-        users[email] = password
+        users[email] = pbkdf2_sha256.hash(password)
+        print(users)
         flash("Successfully signed up.")
         return redirect(url_for("login"))
 
