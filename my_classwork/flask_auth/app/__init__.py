@@ -1,9 +1,10 @@
+import functools
+
 from flask import (
     Flask,
     session,
     render_template,
     request,
-    abort,
     url_for,
     flash,
     redirect
@@ -18,15 +19,25 @@ app.secret_key = "lkaQT-kAb6aIvqWETVcCQ28F-j-rP_PSEaCDdTynkXA"
 users = {}
 
 
+def login_required(route):
+    @functools.wraps(route)
+    def route_wrapper(*args, **kwargs):
+        if session.get("email") is None:
+            return redirect(url_for("login"))
+
+        return route(*args, **kwargs)
+
+    return route_wrapper
+
+
 @app.get("/")
 def home():
     return render_template("home.html", email=session.get("email"))
 
 
 @app.get("/protected")
+@login_required
 def protected():
-    if not session.get("email"):
-        abort(401)
     return render_template("protected.html")
 
 
