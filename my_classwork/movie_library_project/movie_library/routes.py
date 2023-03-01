@@ -20,9 +20,13 @@ pages = Blueprint(
 
 @pages.route("/")
 def index():
+    movie_data = current_app.db.movie.find({})
+    movies = [Movie(**movie) for movie in movie_data]
+
     return render_template(
         "index.html",
         title="Movies Watchlist",
+        movies_data=movies,
     )
 
 
@@ -47,6 +51,12 @@ def add_movie():
         title="Movies Watchlist - Add Movie",
         form=form
     )
+
+
+@pages.get("/movie/<string:_id>")
+def movie(_id: str):
+    movie = Movie(**current_app.db.movie.find_one({"_id": _id}))
+    return render_template("movie_details.html", movie=movie)
 
 
 @pages.get("/toggle-theme")
