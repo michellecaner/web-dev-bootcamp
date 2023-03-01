@@ -13,7 +13,7 @@ pages = Blueprint(
 @pages.context_processor
 def add_calc_date_range():
     def date_range(start: datetime.datetime):
-        dates = [start + datetime.timedelta(days=diff) for diff in range(-3,4)]
+        dates = [start + datetime.timedelta(days=diff) for diff in range(-3, 4)]
         return dates
 
     return {"date_range": date_range}
@@ -26,7 +26,7 @@ def today_at_midnight():
 
 @pages.route("/")
 def index():
-    date_str =request.args.get("date")
+    date_str = request.args.get("date")
     if date_str:
         selected_date = datetime.datetime.fromisoformat(date_str)
     else:
@@ -34,14 +34,14 @@ def index():
 
     habits_on_date = current_app.db.habits.find({"added": {"$lte": selected_date}})
 
-    completions =  [
+    completions = [
         habit["habit"]
         for habit in current_app.db.completions.find({"date": selected_date})
     ]
 
     return render_template(
-        "index.html", 
-        habits = habits_on_date,
+        "index.html",
+        habits=habits_on_date,
         selected_date=selected_date,
         completions=completions,
         title="Habit Tracker - Home"
@@ -58,7 +58,7 @@ def add_habit():
         )
 
     return render_template(
-        "add_habit.html", 
+        "add_habit.html",
         title="Habit Tracker - Add Habit",
         selected_date=today
     )
@@ -70,8 +70,8 @@ def add_habit():
 # @app.post("/complete")
 @pages.route("/complete", methods=["POST"])
 def complete():
-    date_string = request.form.get("date") # <--db key
-    habit = request.form.get("habitId") # <--db key
+    date_string = request.form.get("date")  # <--db key
+    habit = request.form.get("habitId")  # <--db key
     date = datetime.datetime.fromisoformat(date_string)
     current_app.db.completions.insert_one({"date": date, "habit": habit})
 
