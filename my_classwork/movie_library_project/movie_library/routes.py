@@ -1,4 +1,5 @@
 import uuid
+import datetime
 from flask import (
     Blueprint,
     redirect,
@@ -6,7 +7,7 @@ from flask import (
     url_for,
     session,
     request,
-    current_app
+    current_app,
 )
 
 from dataclasses import asdict
@@ -53,18 +54,27 @@ def add_movie():
     )
 
 
+@pages.get("/movie/<string:_id>")
+def movie(_id: str):
+    movie = Movie(**current_app.db.movie.find_one({"_id": _id}))
+    return render_template("movie_details.html", movie=movie)
+
+
+@pages.get("/movie/<string:_id>/watch")
+def watch_today(_id):
+    current_app.db.movie.update_one(
+        {"_id": _id}, {"$set": {"last_watched": datetime.datetime.today()}}
+    )
+
+    return redirect(url_for(".movie", _id=_id))
+
+
 @pages.get("/movie/<string:_id>/rate")
 def rate_movie(_id):
     rating = int(request.args.get("rating"))
     current_app.db.movie.update_one({"_id": _id}, {"$set": {"rating": rating}})
 
     return redirect(url_for(".movie", _id=_id))
-
-
-@pages.get("/movie/<string:_id>")
-def movie(_id: str):
-    movie = Movie(**current_app.db.movie.find_one({"_id": _id}))
-    return render_template("movie_details.html", movie=movie)
 
 
 @pages.get("/toggle-theme")
