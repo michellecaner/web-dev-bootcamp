@@ -9,7 +9,7 @@ projects = [
         "hero": "img/habit-tracking-hero.png",
         "categories": ["python", "web"],
         "slug": "habit-tracking",
-        "prod": "https://udemy.com",
+        "prod": "https://udemy-habit-tracker.onrender.com",
     },
     {
         "name": "GoGal travel journal app with React and Python",
